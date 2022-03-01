@@ -12,7 +12,6 @@
 
 uint8_t mqttRetryCounter = 0;
 
-
 WiFiManager wifiManager;
 WiFiClient wifiClient;
 PubSubClient mqttClient;
@@ -39,7 +38,6 @@ char MQTT_TOPIC_AUTOCONF_CPM[128];
 char MQTT_TOPIC_AUTOCONF_USV[128];
 
 SoftwareSerial geigerCounterSerial(PIN_UART_RX, PIN_UART_TX);
-
 
 bool shouldSaveConfig = false;
 
@@ -69,8 +67,6 @@ void setup() {
   snprintf(MQTT_TOPIC_AUTOCONF_CPM, 127, "homeassistant/sensor/%s/%s_cpm/config", FIRMWARE_PREFIX, identifier);
   snprintf(MQTT_TOPIC_AUTOCONF_USV, 127, "homeassistant/sensor/%s/%s_usv/config", FIRMWARE_PREFIX, identifier);
 
-
-
   WiFi.hostname(identifier);
 
   loadConfig();
@@ -94,7 +90,6 @@ void setup() {
 
   mqttReconnect();
 }
-
 
 void loop() {
   mqttClient.loop();
@@ -177,7 +172,6 @@ void publishAutoConfig() {
   device["model"] = "Geiger Counter";
   device["name"] = identifier;
   device["sw_version"] = "0.0.1";
-
 
   DynamicJsonDocument cpmSensorPayload(512);
 
